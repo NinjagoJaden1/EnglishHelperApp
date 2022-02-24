@@ -8,13 +8,24 @@
 import SwiftUI
 
 struct GridView: View {
+    @available(macOS 10.15, *)
+    @State var selected : Bool = false
+    var text : String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    
+        Text(text)
+            .foregroundColor(selected ? .blue : .red)
+            .font(.system(size: 100, design: .rounded))
+            .minimumScaleFactor(0.01)
+            .onTapGesture {
+                selected.toggle()
+            }
     }
 }
 
 struct GridView_Previews: PreviewProvider {
+    @available(macOS 10.15, *)
     static var previews: some View {
-        GridView()
+        GridView(text: "A")
     }
 }
